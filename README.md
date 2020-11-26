@@ -3,6 +3,9 @@
 ### What is it?
 Battleship inspired drinking game
 
+### Trello Board
+https://trello.com/b/bxGg1m6y/battleshots
+
 ### Game modes
 1. 1v1- This will be  a classic 1v1 drinking game. Regular Battleship and the main game mode
 1. Free for all - Max players 4? This will take a uno + Battleship combo into a drinking game.
