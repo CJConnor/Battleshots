@@ -8,6 +8,10 @@ public class GridManager : MonoBehaviour
     public int rows = 10;
     public int cols = 10;
     public float tileSize = 0.8f;
+    public float maxValueX;
+    public float minValueX;
+    public float maxValueY;
+    public float minValueY;
     public IDictionary<string, GameObject> gridStore = new Dictionary<string, GameObject>();
     private string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -46,7 +50,49 @@ public class GridManager : MonoBehaviour
         foreach(Transform child in transform)
         {
             this.gridStore[child.gameObject.name] = child.gameObject;
+
+            SpriteRenderer SpriteR = child.gameObject.GetComponent<SpriteRenderer>();
+
+            Vector2 topLeft = new Vector2(child.gameObject.transform.position.x - SpriteR.bounds.extents.x, child.gameObject.transform.position.y + SpriteR.bounds.extents.y);
+            Vector2 bottomRight = new Vector2(child.gameObject.transform.position.x + SpriteR.bounds.extents.x, child.gameObject.transform.position.y - SpriteR.bounds.extents.y);
+
+            if (topLeft.x > maxValueX)
+            {
+                maxValueX = topLeft.x;
+            }
+            if (topLeft.y > maxValueY)
+            {
+                maxValueY = topLeft.y;
+            }
+            if (topLeft.x < minValueX)
+            {
+                minValueX = topLeft.x;
+            }
+            if (topLeft.y < minValueY)
+            {
+                minValueY = topLeft.y;
+            }
+
+            if (bottomRight.x > maxValueX)
+            {
+                maxValueX = bottomRight.x;
+            }
+            if (bottomRight.y > maxValueY)
+            {
+                maxValueY = bottomRight.y;
+            }
+            if (bottomRight.x < minValueX)
+            {
+                minValueX = bottomRight.x;
+            }
+            if (bottomRight.y < minValueY)
+            {
+                minValueY = bottomRight.y;
+            }
+
         }
+
+        Debug.Log(maxValueX);
     }
 
     // Update is called once per frame
