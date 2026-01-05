@@ -53,7 +53,7 @@ public class ShipMovement : MonoBehaviour
                 float distance = Vector2.Distance(TopLeft, entry.Value.transform.position);
 
                 // If the distance is less than the current closest distance
-                if (distance < closestDistance)
+                if (distance <= closestDistance)
                 {
                     closestDistance = distance;
                     closestPoint = entry.Key;
@@ -61,15 +61,8 @@ public class ShipMovement : MonoBehaviour
 
             }
 
-            // Get the sprite of the closest tile
-            SpriteRenderer SpriteR = coords[closestPoint].gameObject.GetComponent<SpriteRenderer>();
 
-            // Get the top left vector of the tile
-            float tileTopLeftX = (float)(coords[closestPoint].transform.position.x - SpriteR.bounds.extents.x);
-            float tileTopLeftY = (float)(coords[closestPoint].transform.position.y + SpriteR.bounds.extents.y);
-
-            // Get and set the new central position from the top left vector of the tile
-            this.gameObject.transform.position = new Vector2(tileTopLeftX + Sprite.bounds.extents.x, tileTopLeftY - Sprite.bounds.extents.y);
+            MoveShip(coords[closestPoint], Sprite);
 
         }
         
@@ -109,5 +102,18 @@ public class ShipMovement : MonoBehaviour
     private void OnMouseUp()
     {
         this.isBeingHeld = false;    
+    }
+
+    public void MoveShip(GameObject Coords, SpriteRenderer Sprite)
+    {
+        // Get the sprite of the closest tile
+        SpriteRenderer SpriteR = Coords.gameObject.GetComponent<SpriteRenderer>();
+
+        // Get the top left vector of the tile
+        float tileTopLeftX = (float)(Coords.transform.position.x - SpriteR.bounds.extents.x);
+        float tileTopLeftY = (float)(Coords.transform.position.y + SpriteR.bounds.extents.y);
+
+        // Get and set the new central position from the top left vector of the tile
+        this.gameObject.transform.position = new Vector2(tileTopLeftX + Sprite.bounds.extents.x, tileTopLeftY - Sprite.bounds.extents.y);
     }
 }

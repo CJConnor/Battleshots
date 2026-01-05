@@ -289,7 +289,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Set Ships
 --- !u!222 &235181143
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 7574486387100051204, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
       propertyPath: m_Name
-      value: Boundary (2)
+      value: BottomBoundary
       objectReference: {fileID: 0}
     - target: {fileID: 7574486387100051205, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
@@ -369,6 +369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2181f156f37d5e4083cdb59e4fb0023, type: 3}
@@ -474,6 +479,7 @@ MonoBehaviour:
   minValueX: 0
   maxValueY: 0
   minValueY: 0
+  Canvas: {fileID: 161192287}
 --- !u!4 &601983846
 Transform:
   m_ObjectHideFlags: 0
@@ -533,7 +539,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCount: 2
   players: []
-  points: []
+  button: {fileID: 1653487840}
+  gameState: placement
 --- !u!1001 &1409785122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,7 +551,7 @@ PrefabInstance:
     - target: {fileID: 7574486387100051204, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
       propertyPath: m_Name
-      value: Boundary (1)
+      value: RightBoundary
       objectReference: {fileID: 0}
     - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
@@ -601,6 +608,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2181f156f37d5e4083cdb59e4fb0023, type: 3}
 --- !u!1 &1653487840
@@ -616,7 +628,7 @@ GameObject:
   - component: {fileID: 1653487843}
   - component: {fileID: 1653487842}
   m_Layer: 5
-  m_Name: Button
+  m_Name: GameStateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 7574486387100051204, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
       propertyPath: m_Name
-      value: Boundary (3)
+      value: LeftBoundary
       objectReference: {fileID: 0}
     - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
@@ -800,6 +812,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2181f156f37d5e4083cdb59e4fb0023, type: 3}
 --- !u!1001 &7574486386446414402
@@ -812,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 7574486387100051204, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
       propertyPath: m_Name
-      value: Boundary
+      value: TopBoundary
       objectReference: {fileID: 0}
     - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
         type: 3}
@@ -868,6 +890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574486387100051211, guid: d2181f156f37d5e4083cdb59e4fb0023,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2181f156f37d5e4083cdb59e4fb0023, type: 3}

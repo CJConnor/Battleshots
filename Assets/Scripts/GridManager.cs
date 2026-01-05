@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GridManager : MonoBehaviour
     public float minValueY;
     public IDictionary<string, GameObject> gridStore = new Dictionary<string, GameObject>();
     private string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public GameObject Canvas;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +25,57 @@ public class GridManager : MonoBehaviour
 
     private void GenerateGrid()
     {
+
+        /*rows += 1;
+        cols += 1;*/
+
         char[] a = alphabet.ToCharArray();
         GameObject referenceTile = (GameObject)Instantiate(Resources.Load("water"));
+        //GameObject referenceText = (GameObject)Instantiate(Resources.Load("Text"));
+
         for (int row = 0; row < rows; row++)
         {
+
             for (int col = 0; col < cols; col++)
             {
+
+                /*if (row == 0 && col == 0)
+                {
+                    continue;
+                }
+
+                if (row == 0)
+                {
+                    GameObject text = (GameObject)Instantiate(referenceText, transform);
+
+                    float posTX = col * tileSize;
+                    float posTY = row * -tileSize;
+
+                    text.transform.position = new Vector2(posTX, posTY);
+
+                    text.transform.parent = Canvas.transform;
+
+                    continue;
+                }
+
+                if (col == 0)
+                {
+
+                    GameObject text = (GameObject)Instantiate(referenceText, transform);
+
+                    float posTX = col * tileSize;
+                    float posTY = row * -tileSize;
+
+                    text.transform.position = new Vector2(posTX, posTY);
+
+                    text.transform.parent = Canvas.transform;
+
+                    continue;
+
+                }*/
+
+
+
                 GameObject tile = (GameObject)Instantiate(referenceTile, transform);
 
                 float posX = col * tileSize;
@@ -92,7 +139,7 @@ public class GridManager : MonoBehaviour
 
         }
 
-        Debug.Log(maxValueX);
+        //Debug.Log(maxValueX);
     }
 
     // Update is called once per frame

@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     // Instantiate game variables
     public int playerCount = 2;
     public List<GameObject> players;
-    public IDictionary<string, IDictionary> ships = new Dictionary<string, IDictionary>();
-    public List<string> points;
-    public IDictionary<string, List<string>> shipPoints = new Dictionary<string, List<string>>();
+    public IDictionary<string, IDictionary<string, List<string>>> ships = new Dictionary<string, IDictionary<string, List<string>>>();
+    // public List<string> points;
+    // public IDictionary<string, List<string>> shipPoints = new Dictionary<string, List<string>>();
+    public GameObject button;
+    public string gameState = "placement";
     private GameObject CurrentActivePlayer;
 
     // Start is called before the first frame update
@@ -68,21 +71,18 @@ public class GameManager : MonoBehaviour
             if (players[i].gameObject.activeSelf)
             {
 
-                // If ship points is full clear it
-                if (shipPoints.Count > 0)
-                {
-                    shipPoints.Clear();
-                }
-
-                // If points is full clear it
-                if (points.Count > 0)
-                {
-                    points.Clear();
-                }
+                IDictionary<string, List<string>> shipPoints = new Dictionary<string, List<string>>();
+                List<string> points = new List<string>();
 
                 // For each player object 
                 foreach (Transform child in players[i].gameObject.transform)
                 {
+
+                    // If points is full clear it
+                    if (points.Count > 0)
+                    {
+                        points.Clear();
+                    }
 
                     // Get the box collider for the player
                     BoxCollider2D boxCollider = child.gameObject.GetComponent<BoxCollider2D>();
@@ -109,19 +109,31 @@ public class GameManager : MonoBehaviour
 
                         }
 
-                        // Add the points and ship name to the ship points dictionary
-                        shipPoints.Add(child.gameObject.name, points);
+                        List<string> p = points;
+
+                        // Add the points and ship name to the ships points dictionary
+                        shipPoints.Add(child.gameObject.name, p);
+
+                        Destroy(child.gameObject);
 
                     }
+
 
                 }
 
                 // Add the players ships to the ships dictionary 
-                ships.Add(players[i].gameObject.name, (IDictionary)shipPoints);
+                ships.Add(players[i].gameObject.name, shipPoints);
 
                 // If the last player then change player ship movement 
-                if (i != playerCount - 1)
+                if (i == playerCount - 1)
                 {
+                    StartGame();
+                } else
+                {
+                    if (i == playerCount - 2)
+                    {
+                        button.gameObject.GetComponentInChildren<Text>().text = "Start Game";
+                    }
                     ChangePlayer();
                     break;
                 }
@@ -149,6 +161,47 @@ public class GameManager : MonoBehaviour
 
         CurrentActivePlayer.SetActive(true);
 
+    }
+
+    public void StartGame()
+    {
+
+        button.SetActive(false);
+
+        // Loop through players
+        for (int i = 0; i < players.Count; i++)
+        {
+
+            players[i].SetActive(false);
+
+            // Get the next player in line
+            int index = Int32.Parse(CurrentActivePlayer.name.Remove(0, 6)) - 1;
+
+            index = index + 1 > playerCount - 1 ? 0 : index + 1;
+
+            players[i].GetComponent<HitScript>().enabled = true;
+
+            // For each player object 
+            foreach (Transform child in players[i].gameObject.transform)
+            {
+                child.gameObject.SetActive(false);
+                child.GetComponent<ShipMovement>().enabled = false;
+            }
+
+        }
+
+        players[0].SetActive(true);
+
+        CurrentActivePlayer = players[0];
+
+    }
+
+    public IEnumerator Wait(float seconds)
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(seconds);
+        }
     }
 
     // Update is called once per frame

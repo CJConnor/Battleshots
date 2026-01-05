@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Ships
-  - 
+  - HitMiss
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: HitMiss
+    uniqueID: 1761767911
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
